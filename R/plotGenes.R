@@ -414,7 +414,9 @@ function(geneinfo=NULL, chrom=NULL, chromstart=NULL,chromend=NULL,
   
   # filter out transcrits that don't overlap region
   transcriptinfo = transcriptinfo[which((transcriptinfo[,2] > chromstart & transcriptinfo[,2] < chromend)
-                       | (transcriptinfo[,3] > chromstart & transcriptinfo[,3] < chromend)),]
+                       | (transcriptinfo[,3] > chromstart & transcriptinfo[,3] < chromend)
+                       | (transcriptinfo[,2] <= chromstart & transcriptinfo[, 3] >= chromend)
+                                       ),]
   
   if (nrow(transcriptinfo) == 0)
   {
